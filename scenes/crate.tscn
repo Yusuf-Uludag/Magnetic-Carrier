@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://ibsfyc6ylphi"]
 
-[ext_resource type="Script" uid="uid://5f6lafn30lv3" path="res://crate_collision_polygon_2d.gd" id="1_b66cd"]
 [ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="1_dwt0d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b66cd"]
+size = Vector2(130, 130)
 
 [node name="crate" type="RigidBody2D" unique_id=1840297805]
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2078197744]
-position = Vector2(-1.4747925, 0.61428833)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=469688312]
 texture = ExtResource("1_dwt0d")
-texture_offset = Vector2(60, 60)
-polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=851415255]
-polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 0)
-script = ExtResource("1_b66cd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178545300]
+shape = SubResource("RectangleShape2D_b66cd")

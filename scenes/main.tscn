@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://cbya04kutqx6r"]
 
 [ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/crate.tscn" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="2_0wfyh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o5qli"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(85, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(471, 127)
@@ -16,23 +23,27 @@ position = Vector2(544, 319)
 [node name="crate3" parent="." unique_id=1165514177 instance=ExtResource("1_o5qli")]
 position = Vector2(635, 97)
 
-[node name="Polygon2D" parent="crate3" index="0" unique_id=2078197744]
-polygon = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2123248655]
-position = Vector2(564, 486)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=296824566]
-shape = SubResource("RectangleShape2D_o5qli")
-
 [node name="crate4" parent="." unique_id=2102668132 instance=ExtResource("1_o5qli")]
 position = Vector2(612, -31)
 
-[node name="Polygon2D" parent="crate4" index="0" unique_id=2078197744]
-polygon = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
+[node name="Sprite2D" parent="crate4" index="0" unique_id=469688312]
+scale = Vector2(0.6640625, 0.625)
+texture = SubResource("CompressedTexture2D_o5qli")
+
+[node name="CollisionShape2D" parent="crate4" index="1" unique_id=1178545300]
+shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="crate5" parent="." unique_id=2003327260 instance=ExtResource("1_o5qli")]
 position = Vector2(333, -92)
 
-[editable path="crate3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2123248655]
+position = Vector2(564, 486)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1356503361]
+scale = Vector2(3.7, 1)
+texture = ExtResource("2_0wfyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=296824566]
+shape = SubResource("RectangleShape2D_o5qli")
+
 [editable path="crate4"]
