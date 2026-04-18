@@ -1,6 +1,43 @@
 [gd_scene format=3 uid="uid://cbya04kutqx6r"]
 
-[ext_resource type="PackedScene" path="res://scenes/platform_polygon.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://y7a812dv3i3v" path="res://scenes/platform_polygon.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://d23jb6ailsap2" path="res://scenes/elevator.tscn" id="2_0wfyh"]
+
+[sub_resource type="Animation" id="Animation_0wfyh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(523, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_sugp2"]
+resource_name = "elevate"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(523, 0, 0, 1.5, -0.5, 253, -1.5, -0.5, 0, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyhfs"]
+_data = {
+&"RESET": SubResource("Animation_0wfyh"),
+&"elevate": SubResource("Animation_sugp2")
+}
 
 [node name="Main" type="Node2D" unique_id=97074791]
 
@@ -8,7 +45,7 @@
 
 [node name="Polygon2D" parent="platformPolygon" index="0" unique_id=51497381]
 texture_scale = Vector2(5, 5)
-polygon = PackedVector2Array(64, 64, 64, 448, 320, 448, 320, 576, 896, 576, 896, 704, -64, 704, -64, -64, 1216, -64, 1216, 704, 1088, 704, 1088, 64)
+polygon = PackedVector2Array(64, 64, 64, 576, 896, 576, 896, 704, -64, 704, -64, -64, 1216, -64, 1216, 704, 1088, 704, 1088, 64)
 
 [node name="CollisionPolygon2D" parent="platformPolygon" index="1" unique_id=516406077]
 position = Vector2(nan, nan)
@@ -21,6 +58,13 @@ position = Vector2(128, -3)
 texture_scale = Vector2(1.575, 1.575)
 texture_rotation = 0.7853982
 polygon = PackedVector2Array(384, 256, 768, 256, 768, 320, 384, 320)
+
+[node name="Elevator" parent="." unique_id=734371316 instance=ExtResource("2_0wfyh")]
+position = Vector2(274, 523)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Elevator" unique_id=2021353654]
+libraries/ = SubResource("AnimationLibrary_jyhfs")
+autoplay = &"elevate"
 
 [editable path="platformPolygon"]
 [editable path="platformPolygon2"]
