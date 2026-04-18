@@ -1,3 +1,38 @@
 [gd_scene format=3 uid="uid://cbya04kutqx6r"]
 
+[ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/crate.tscn" id="1_o5qli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(471, 127)
+
 [node name="Main" type="Node2D" unique_id=97074791]
+
+[node name="crate" parent="." unique_id=1840297805 instance=ExtResource("1_o5qli")]
+position = Vector2(449, 95)
+
+[node name="crate2" parent="." unique_id=1985356001 instance=ExtResource("1_o5qli")]
+position = Vector2(544, 319)
+
+[node name="crate3" parent="." unique_id=1165514177 instance=ExtResource("1_o5qli")]
+position = Vector2(635, 97)
+
+[node name="Polygon2D" parent="crate3" index="0" unique_id=2078197744]
+polygon = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2123248655]
+position = Vector2(564, 486)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=296824566]
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="crate4" parent="." unique_id=2102668132 instance=ExtResource("1_o5qli")]
+position = Vector2(612, -31)
+
+[node name="Polygon2D" parent="crate4" index="0" unique_id=2078197744]
+polygon = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
+
+[node name="crate5" parent="." unique_id=2003327260 instance=ExtResource("1_o5qli")]
+position = Vector2(333, -92)
+
+[editable path="crate3"]
+[editable path="crate4"]
