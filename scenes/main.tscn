@@ -1,3 +1,26 @@
 [gd_scene format=3 uid="uid://cbya04kutqx6r"]
 
+[ext_resource type="PackedScene" uid="uid://y7a812dv3i3v" path="res://scenes/platform_polygon.tscn" id="1_o5qli"]
+
 [node name="Main" type="Node2D" unique_id=97074791]
+
+[node name="platformPolygon" parent="." unique_id=2054198748 instance=ExtResource("1_o5qli")]
+
+[node name="Polygon2D" parent="platformPolygon" index="0" unique_id=51497381]
+texture_scale = Vector2(5, 5)
+polygon = PackedVector2Array(64, 64, 64, 448, 320, 448, 320, 576, 896, 576, 896, 704, -64, 704, -64, -64, 1216, -64, 1216, 704, 1088, 704, 1088, 64)
+
+[node name="CollisionPolygon2D" parent="platformPolygon" index="1" unique_id=516406077]
+position = Vector2(nan, nan)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="platformPolygon2" parent="." unique_id=1109108461 instance=ExtResource("1_o5qli")]
+
+[node name="Polygon2D" parent="platformPolygon2" index="0" unique_id=51497381]
+position = Vector2(128, -3)
+texture_scale = Vector2(1.575, 1.575)
+texture_rotation = 0.7853982
+polygon = PackedVector2Array(384, 256, 768, 256, 768, 320, 384, 320)
+
+[editable path="platformPolygon"]
+[editable path="platformPolygon2"]
