@@ -1,49 +1,63 @@
 [gd_scene format=3 uid="uid://cbya04kutqx6r"]
 
-[ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/crate.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/small_crate.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="2_0wfyh"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o5qli"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
-size = Vector2(85, 80)
+[ext_resource type="PackedScene" uid="uid://2beqhfnd5whe" path="res://scenes/small_fragile_crate.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://x2gmxsggrb6" path="res://scenes/large_crate.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://1610vy0jcp6o" path="res://scenes/large_fragile_crate.tscn" id="4_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
-size = Vector2(471, 127)
+size = Vector2(1000, 127)
 
 [node name="Main" type="Node2D" unique_id=97074791]
 
-[node name="crate" parent="." unique_id=1840297805 instance=ExtResource("1_o5qli")]
-position = Vector2(449, 95)
+[node name="SmallCrate" parent="." unique_id=1840297805 instance=ExtResource("1_o5qli")]
+position = Vector2(400, 213)
 
-[node name="crate2" parent="." unique_id=1985356001 instance=ExtResource("1_o5qli")]
-position = Vector2(544, 319)
+[node name="SmallCrate2" parent="." unique_id=1264648050 instance=ExtResource("1_o5qli")]
+position = Vector2(528, 262)
 
-[node name="crate3" parent="." unique_id=1165514177 instance=ExtResource("1_o5qli")]
-position = Vector2(635, 97)
+[node name="SmallCrate3" parent="." unique_id=407137190 instance=ExtResource("1_o5qli")]
+position = Vector2(374, 311)
 
-[node name="crate4" parent="." unique_id=2102668132 instance=ExtResource("1_o5qli")]
-position = Vector2(612, -31)
+[node name="LargeCrate" parent="." unique_id=43527923 instance=ExtResource("3_sugp2")]
+position = Vector2(580, 382)
 
-[node name="Sprite2D" parent="crate4" index="0" unique_id=469688312]
-scale = Vector2(0.6640625, 0.625)
-texture = SubResource("CompressedTexture2D_o5qli")
+[node name="LargeCrate2" parent="." unique_id=8306366 instance=ExtResource("3_sugp2")]
+position = Vector2(489, 347)
+rotation = 1.5707964
 
-[node name="CollisionShape2D" parent="crate4" index="1" unique_id=1178545300]
-shape = SubResource("RectangleShape2D_0wfyh")
+[node name="LargeCrate3" parent="." unique_id=990429559 instance=ExtResource("3_sugp2")]
+position = Vector2(320, 310)
+rotation = 1.5707964
 
-[node name="crate5" parent="." unique_id=2003327260 instance=ExtResource("1_o5qli")]
-position = Vector2(333, -92)
+[node name="LargeCrate4" parent="." unique_id=867990968 instance=ExtResource("3_sugp2")]
+position = Vector2(313, 387)
+
+[node name="LargeCrate5" parent="." unique_id=2115140498 instance=ExtResource("3_sugp2")]
+position = Vector2(463, 100)
+rotation = 1.5707964
+
+[node name="SmallFragileCrate" parent="." unique_id=347871463 instance=ExtResource("3_jyhfs")]
+position = Vector2(686, 133)
+
+[node name="SmallFragileCrate2" parent="." unique_id=25323938 instance=ExtResource("3_jyhfs")]
+position = Vector2(777, 60)
+
+[node name="LargeFragileCrate" parent="." unique_id=76934778 instance=ExtResource("4_tbgi4")]
+position = Vector2(951, 132)
+
+[node name="LargeFragileCrate2" parent="." unique_id=247907691 instance=ExtResource("4_tbgi4")]
+position = Vector2(1094, 58)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2123248655]
 position = Vector2(564, 486)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1356503361]
-scale = Vector2(3.7, 1)
+position = Vector2(263.60004, 0)
+scale = Vector2(7.818751, 1)
 texture = ExtResource("2_0wfyh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=296824566]
+position = Vector2(265, 0)
 shape = SubResource("RectangleShape2D_o5qli")
-
-[editable path="crate4"]

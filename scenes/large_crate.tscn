@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://x2gmxsggrb6"]
+
+[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="1_uralw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uralw"]
+size = Vector2(100, 50)
+
+[node name="LargeCrate" type="RigidBody2D" unique_id=1840297805]
+mass = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=469688312]
+texture = ExtResource("1_uralw")
+region_enabled = true
+region_rect = Rect2(15, 30, 100, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178545300]
+shape = SubResource("RectangleShape2D_uralw")
