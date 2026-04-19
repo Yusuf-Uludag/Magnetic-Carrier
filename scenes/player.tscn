@@ -1,14 +1,61 @@
-[gd_scene format=3 uid="uid://w26ewv8qrh8p"]
+[gd_scene format=3 uid="uid://d0aepl1vu745q"]
 
-[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cb3banqwy4yu3" path="res://scripts/player.gd" id="1_0ekt8"]
+[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="2_gedl3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
-radius = 64.7
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyad2"]
+radius = 80.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1234533783]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dnvs"]
+size = Vector2(282, 189)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=770166311]
-texture = ExtResource("1_3vyb7")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ekt8"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1632648126]
-shape = SubResource("CircleShape2D_g2els")
+[node name="Player" type="RigidBody2D" unique_id=1568808073]
+mass = 10.0
+script = ExtResource("1_0ekt8")
+
+[node name="Joint" type="Node2D" parent="." unique_id=896105906]
+
+[node name="LeftWheel" type="RigidBody2D" parent="Joint" unique_id=987193301]
+position = Vector2(-100, 0)
+mass = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Joint/LeftWheel" unique_id=1479825757]
+visible = false
+scale = Vector2(0.734375, 0.6562499)
+texture = ExtResource("2_gedl3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Joint/LeftWheel" unique_id=1649914370]
+shape = SubResource("CircleShape2D_nyad2")
+
+[node name="RightWheel" type="RigidBody2D" parent="Joint" unique_id=1725758659]
+position = Vector2(100, 0)
+mass = 0.5
+
+[node name="Sprite2D2" type="Sprite2D" parent="Joint/RightWheel" unique_id=1464917511]
+visible = false
+texture = ExtResource("2_gedl3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Joint/RightWheel" unique_id=393853022]
+shape = SubResource("CircleShape2D_nyad2")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Joint" unique_id=1888396922]
+position = Vector2(-100, 0)
+node_a = NodePath("../LeftWheel")
+node_b = NodePath("../..")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Joint" unique_id=600120022]
+position = Vector2(100, 0)
+node_a = NodePath("../RightWheel")
+node_b = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1296468498]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_4dnvs")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=383588701]
+position = Vector2(-100, 70)
+shape = SubResource("RectangleShape2D_0ekt8")
+target_position = Vector2(220, 2)
+collision_mask = 512
