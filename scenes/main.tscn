@@ -13,14 +13,24 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(523, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(499, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(274, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_sugp2"]
 resource_name = "elevate"
 length = 5.0
-loop_mode = 2
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,8 +38,8 @@ tracks/0/path = NodePath(".:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(523, 0, 0, 1.5, -0.5, 253, -1.5, -0.5, 0, 0),
+"handle_modes": PackedInt32Array(3, 3),
+"points": PackedFloat32Array(474, -1.5, 0, 1.5, 0, 152, -1.5, 0, 1.5, 0),
 "times": PackedFloat32Array(0, 5)
 }
 
@@ -60,7 +70,7 @@ texture_rotation = 0.7853982
 polygon = PackedVector2Array(384, 256, 768, 256, 768, 320, 384, 320)
 
 [node name="Elevator" parent="." unique_id=734371316 instance=ExtResource("2_0wfyh")]
-position = Vector2(274, 523)
+position = Vector2(274, 499)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Elevator" unique_id=2021353654]
 libraries/ = SubResource("AnimationLibrary_jyhfs")
