@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://y7a812dv3i3v"]
+[gd_scene format=3 uid="uid://nsf8nrh07rqa"]
 
 [ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="1_py0qi"]
-[ext_resource type="Script" uid="uid://p4bgqsfpmj4m" path="res://scripts/collision_polygon_2d.gd" id="2_00wt4"]
+[ext_resource type="Script" path="res://scripts/collision_polygon_2d.gd" id="2_00wt4"]
 
 [node name="platformPolygon" type="StaticBody2D" unique_id=2054198748]
 
@@ -11,6 +11,5 @@ texture = ExtResource("1_py0qi")
 polygon = PackedVector2Array(10, 10, 0, 10, 0, 0, 10, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=516406077]
-build_mode = 1
 polygon = PackedVector2Array(0, 0, 10, 0, 10, 10, 0, 10)
 script = ExtResource("2_00wt4")
