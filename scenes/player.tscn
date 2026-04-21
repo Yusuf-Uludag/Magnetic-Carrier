@@ -11,6 +11,12 @@ size = Vector2(282, 189)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ekt8"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(40, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(20, 120)
+
 [node name="Player" type="RigidBody2D" unique_id=1568808073]
 mass = 10.0
 script = ExtResource("1_0ekt8")
@@ -59,3 +65,39 @@ position = Vector2(-100, 70)
 shape = SubResource("RectangleShape2D_0ekt8")
 target_position = Vector2(220, 2)
 collision_mask = 512
+
+[node name="Crane" type="Node2D" parent="." unique_id=895002757]
+position = Vector2(0, -100)
+
+[node name="CraneJoint" type="PinJoint2D" parent="Crane" unique_id=1008217182]
+node_a = NodePath("../..")
+node_b = NodePath("../UpperArm")
+motor_enabled = true
+
+[node name="UpperArm" type="RigidBody2D" parent="Crane" unique_id=1542556078]
+collision_layer = 512
+collision_mask = 512
+gravity_scale = 0.0
+can_sleep = false
+angular_damp = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/UpperArm" unique_id=258281417]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="ElbowJoint" type="PinJoint2D" parent="Crane/UpperArm" unique_id=1342600130]
+position = Vector2(0, -100)
+node_a = NodePath("..")
+node_b = NodePath("../../LowerArm")
+motor_enabled = true
+
+[node name="LowerArm" type="RigidBody2D" parent="Crane" unique_id=1329373991]
+position = Vector2(0, -100)
+collision_layer = 512
+collision_mask = 512
+gravity_scale = 0.0
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/LowerArm" unique_id=245111872]
+position = Vector2(0, -60)
+shape = SubResource("RectangleShape2D_qhqgy")

@@ -59,3 +59,4 @@ shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="Player2" parent="." unique_id=1568808073 instance=ExtResource("1_a8v3n")]
 position = Vector2(231, 269)
+motor_speed = 25.0
