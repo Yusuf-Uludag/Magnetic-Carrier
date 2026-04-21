@@ -6,6 +6,7 @@ extends CollisionPolygon2D
 func _ready() -> void:
 	polygon = polygon_2d.polygon
 	position = polygon_2d.position + polygon_2d.offset
+	scale = polygon_2d.scale
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
