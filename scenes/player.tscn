@@ -7,24 +7,40 @@
 radius = 80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dnvs"]
-size = Vector2(282, 189)
+size = Vector2(280, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ekt8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(40, 100)
+size = Vector2(40, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(20, 120)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
+radius = 100.0
+
 [node name="Player" type="RigidBody2D" unique_id=1568808073]
-mass = 10.0
+collision_layer = 4
+collision_mask = 544
+mass = 50.0
 script = ExtResource("1_0ekt8")
 
 [node name="Joint" type="Node2D" parent="." unique_id=896105906]
 
 [node name="LeftWheel" type="RigidBody2D" parent="Joint" unique_id=987193301]
 position = Vector2(-100, 0)
+collision_layer = 4
+collision_mask = 544
 mass = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Joint/LeftWheel" unique_id=1479825757]
@@ -37,6 +53,8 @@ shape = SubResource("CircleShape2D_nyad2")
 
 [node name="RightWheel" type="RigidBody2D" parent="Joint" unique_id=1725758659]
 position = Vector2(100, 0)
+collision_layer = 4
+collision_mask = 544
 mass = 0.5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Joint/RightWheel" unique_id=1464917511]
@@ -59,6 +77,7 @@ node_b = NodePath("../..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1296468498]
 position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_4dnvs")
+disabled = true
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=383588701]
 position = Vector2(-100, 70)
@@ -75,29 +94,88 @@ node_b = NodePath("../UpperArm")
 motor_enabled = true
 
 [node name="UpperArm" type="RigidBody2D" parent="Crane" unique_id=1542556078]
-collision_layer = 512
-collision_mask = 512
+collision_layer = 16
+collision_mask = 544
+mass = 2.0
 gravity_scale = 0.0
 can_sleep = false
 angular_damp = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/UpperArm" unique_id=258281417]
-position = Vector2(0, -50)
+position = Vector2(0, -70)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="ElbowJoint" type="PinJoint2D" parent="Crane/UpperArm" unique_id=1342600130]
-position = Vector2(0, -100)
+position = Vector2(0, -140)
 node_a = NodePath("..")
 node_b = NodePath("../../LowerArm")
 motor_enabled = true
 
 [node name="LowerArm" type="RigidBody2D" parent="Crane" unique_id=1329373991]
-position = Vector2(0, -100)
-collision_layer = 512
-collision_mask = 512
+position = Vector2(0, -140)
+collision_layer = 16
+collision_mask = 544
+mass = 2.0
 gravity_scale = 0.0
 can_sleep = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/LowerArm" unique_id=245111872]
 position = Vector2(0, -60)
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="MagnetJoint" type="PinJoint2D" parent="Crane/LowerArm" unique_id=1312847624]
+position = Vector2(0, -120)
+node_a = NodePath("..")
+node_b = NodePath("../Magnet")
+motor_enabled = true
+
+[node name="Magnet" type="RigidBody2D" parent="Crane/LowerArm" unique_id=639849244]
+position = Vector2(0, -120)
+collision_layer = 16
+collision_mask = 544
+gravity_scale = 0.0
+can_sleep = false
+angular_damp = 5.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Crane/LowerArm/Magnet" unique_id=333139534]
+polygon = PackedVector2Array(-50, 0, 50, 0, 50, -50, 20, -50, 20, -30, -20, -30, -20, -50, -50, -50)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Crane/LowerArm/Magnet" unique_id=1605625931]
+position = Vector2(0, -100)
+shape = SubResource("CircleShape2D_g2els")
+target_position = Vector2(0, 0)
+collision_mask = 32
+
+[node name="MagnetCrateJoint" type="PinJoint2D" parent="Crane/LowerArm/Magnet" unique_id=64443893]
+position = Vector2(0, -50)
+node_a = NodePath("..")
+motor_enabled = true
+
+[node name="StickDetector" type="Area2D" parent="Crane/LowerArm/Magnet" unique_id=354773925]
+position = Vector2(0, -50)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/LowerArm/Magnet/StickDetector" unique_id=170325189]
+shape = SubResource("CircleShape2D_qhqgy")
+
+[node name="CratePlacementArea" type="Node2D" parent="Crane/LowerArm/Magnet" unique_id=546331287]
+position = Vector2(0, -52)
+
+[node name="CrateCollisionSimulator" type="CollisionShape2D" parent="Crane/LowerArm/Magnet" unique_id=1430795956]
+position = Vector2(0, -102)
+shape = SubResource("RectangleShape2D_dqkch")
+disabled = true
+
+[node name="MagnetGravityArea" type="Area2D" parent="Crane/LowerArm/Magnet" unique_id=545639822]
+position = Vector2(0, -100)
+collision_layer = 16
+collision_mask = 32
+priority = -1
+gravity_space_override = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Crane/LowerArm/Magnet/MagnetGravityArea" unique_id=2056834339]
+shape = SubResource("CircleShape2D_dqkch")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=424547243]
+polygon = PackedVector2Array(-140, 0, -90, 40, 90, 40, 140, 0, 137, -74, 33, -120, -4, -139, -42, -119, -144, -68)

@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://bptj2yjp5jdl1"]
 
 [ext_resource type="PackedScene" uid="uid://d0aepl1vu745q" path="res://scenes/player.tscn" id="1_a8v3n"]
+[ext_resource type="Script" uid="uid://bpfyp77cykfbv" path="res://scenes/special_crate_test.gd" id="2_6p80c"]
+[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="2_fdpfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(856, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8v3n"]
+size = Vector2(100, 100)
 
 [node name="Main" type="Node2D" unique_id=97074791]
 
@@ -59,4 +64,23 @@ shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="Player2" parent="." unique_id=1568808073 instance=ExtResource("1_a8v3n")]
 position = Vector2(231, 269)
-motor_speed = 25.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1180707776]
+position = Vector2(595, 196)
+collision_layer = 32
+collision_mask = 532
+mass = 0.2
+can_sleep = false
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("2_6p80c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1363879575]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_a8v3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=921960629]
+position = Vector2(2.2500162, -49.625)
+texture = ExtResource("2_fdpfy")
+region_enabled = true
+region_rect = Rect2(20, 20, 100, 100)
