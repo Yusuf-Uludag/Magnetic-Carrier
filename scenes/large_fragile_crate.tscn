@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://1610vy0jcp6o"]
+
+[ext_resource type="Script" uid="uid://cvl825ak2us0x" path="res://scripts/fragile_crate.gd" id="1_uac4w"]
+[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="1_v5cqa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uralw"]
+size = Vector2(100, 50)
+
+[node name="LargeFragileCrate" type="RigidBody2D" unique_id=1840297805]
+mass = 2.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_uac4w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=469688312]
+texture = ExtResource("1_v5cqa")
+region_enabled = true
+region_rect = Rect2(15, 60, 100, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178545300]
+shape = SubResource("RectangleShape2D_uralw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

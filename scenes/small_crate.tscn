@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ibsfyc6ylphi"]
+
+[ext_resource type="Texture2D" uid="uid://xf1w3eo03vug" path="res://icon.svg" id="1_dwt0d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b66cd"]
+size = Vector2(50, 50)
+
+[node name="SmallCrate" type="RigidBody2D" unique_id=1840297805]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=469688312]
+texture = ExtResource("1_dwt0d")
+region_enabled = true
+region_rect = Rect2(40, 40, 50, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178545300]
+shape = SubResource("RectangleShape2D_b66cd")
