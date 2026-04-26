@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dw672xjwjn34o"]
+
+[ext_resource type="Script" uid="uid://wgjp0xqbysyo" path="res://scenes/level_1.gd" id="1_g2h75"]
+[ext_resource type="Script" uid="uid://c31xdi68ae5ew" path="res://scenes/loading_zone.gd" id="2_m7ahb"]
+[ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/small_crate.tscn" id="2_wwpf4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
+size = Vector2(110, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru4tf"]
+size = Vector2(5, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
+size = Vector2(5, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejswk"]
+size = Vector2(110, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbk5w"]
+size = Vector2(110, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
+size = Vector2(300, 20)
+
+[node name="Level1" type="Node2D" unique_id=829880009]
+script = ExtResource("1_g2h75")
+
+[node name="LoadingZones" type="Node2D" parent="." unique_id=1955585293]
+
+[node name="Zone" type="Node2D" parent="LoadingZones" unique_id=1288274292]
+position = Vector2(734, 443)
+script = ExtResource("2_m7ahb")
+
+[node name="InnerArea" type="Area2D" parent="LoadingZones/Zone" unique_id=659511734]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoadingZones/Zone/InnerArea" unique_id=1612548615]
+shape = SubResource("RectangleShape2D_dwgg1")
+
+[node name="BorderArea" type="Area2D" parent="LoadingZones/Zone" unique_id=336746285]
+collision_layer = 0
+collision_mask = 32
+
+[node name="Left" type="CollisionShape2D" parent="LoadingZones/Zone/BorderArea" unique_id=232842224]
+position = Vector2(-57.5, 0)
+shape = SubResource("RectangleShape2D_ru4tf")
+
+[node name="Right" type="CollisionShape2D" parent="LoadingZones/Zone/BorderArea" unique_id=1158788381]
+position = Vector2(57.5, 0)
+shape = SubResource("RectangleShape2D_6sh32")
+
+[node name="Top" type="CollisionShape2D" parent="LoadingZones/Zone/BorderArea" unique_id=783443662]
+position = Vector2(0, -57.5)
+shape = SubResource("RectangleShape2D_ejswk")
+
+[node name="Bottom" type="CollisionShape2D" parent="LoadingZones/Zone/BorderArea" unique_id=1425095177]
+position = Vector2(0, 57.5)
+shape = SubResource("RectangleShape2D_bbk5w")
+
+[node name="Zone2" type="Node2D" parent="LoadingZones" unique_id=684799254]
+position = Vector2(858, 442)
+script = ExtResource("2_m7ahb")
+
+[node name="InnerArea" type="Area2D" parent="LoadingZones/Zone2" unique_id=959353572]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoadingZones/Zone2/InnerArea" unique_id=476082258]
+shape = SubResource("RectangleShape2D_dwgg1")
+
+[node name="BorderArea" type="Area2D" parent="LoadingZones/Zone2" unique_id=780596871]
+collision_layer = 0
+collision_mask = 32
+
+[node name="Left" type="CollisionShape2D" parent="LoadingZones/Zone2/BorderArea" unique_id=1119777954]
+position = Vector2(-57.5, 0)
+shape = SubResource("RectangleShape2D_ru4tf")
+
+[node name="Right" type="CollisionShape2D" parent="LoadingZones/Zone2/BorderArea" unique_id=1489128382]
+position = Vector2(57.5, 0)
+shape = SubResource("RectangleShape2D_6sh32")
+
+[node name="Top" type="CollisionShape2D" parent="LoadingZones/Zone2/BorderArea" unique_id=1547672930]
+position = Vector2(0, -57.5)
+shape = SubResource("RectangleShape2D_ejswk")
+
+[node name="Bottom" type="CollisionShape2D" parent="LoadingZones/Zone2/BorderArea" unique_id=136350223]
+position = Vector2(0, 57.5)
+shape = SubResource("RectangleShape2D_bbk5w")
+
+[node name="SmallCrate" parent="." unique_id=1840297805 instance=ExtResource("2_wwpf4")]
+position = Vector2(734, 315)
+gravity_scale = 0.072
+
+[node name="SmallCrate2" parent="." unique_id=1873174029 instance=ExtResource("2_wwpf4")]
+position = Vector2(858, -106)
+gravity_scale = 0.072
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1924052502]
+position = Vector2(802, 505)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=182315073]
+shape = SubResource("RectangleShape2D_m7ahb")
+
+[connection signal="body_entered" from="LoadingZones/Zone/BorderArea" to="LoadingZones/Zone" method="_on_border_area_body_entered"]
+[connection signal="body_exited" from="LoadingZones/Zone/BorderArea" to="LoadingZones/Zone" method="_on_border_area_body_exited"]
+[connection signal="body_entered" from="LoadingZones/Zone2/BorderArea" to="LoadingZones/Zone2" method="_on_border_area_body_entered"]
+[connection signal="body_exited" from="LoadingZones/Zone2/BorderArea" to="LoadingZones/Zone2" method="_on_border_area_body_exited"]
