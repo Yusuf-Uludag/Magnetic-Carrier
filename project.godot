@@ -40,6 +40,13 @@ attract={
 "events": []
 }
 
+[layer_names]
+
+2d_physics/layer_3="Player"
+2d_physics/layer_5="Crane"
+2d_physics/layer_6="Crate"
+2d_physics/layer_10="Platform"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

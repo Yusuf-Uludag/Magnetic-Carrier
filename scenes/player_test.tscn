@@ -14,7 +14,8 @@ size = Vector2(100, 100)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2105724033]
 position = Vector2(173, 493)
-collision_layer = 513
+collision_layer = 512
+collision_mask = 512
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=633460839]
 offset_left = -144.0
@@ -31,7 +32,8 @@ shape = SubResource("RectangleShape2D_0wfyh")
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1314933294]
 position = Vector2(904, 209)
 rotation = 1.5707964
-collision_layer = 513
+collision_layer = 512
+collision_mask = 512
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=110856475]
 offset_left = -336.0
@@ -48,7 +50,8 @@ shape = SubResource("RectangleShape2D_0wfyh")
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1429834705]
 position = Vector2(-5, 221)
 rotation = 1.5707964
-collision_layer = 513
+collision_layer = 512
+collision_mask = 512
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D3" unique_id=488786164]
 offset_left = -336.0
