@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dprx8vy5kskt7"]
+
+[ext_resource type="Script" uid="uid://csw4r8i81twsu" path="res://scenes/path_follow_2d.gd" id="1_6x3ry"]
+[ext_resource type="PackedScene" uid="uid://bqfmfuhxmg16o" path="res://scenes/button.tscn" id="1_7o1v7"]
+[ext_resource type="PackedScene" uid="uid://nsf8nrh07rqa" path="res://scenes/platform_polygon.tscn" id="2_6x3ry"]
+
+[sub_resource type="Curve2D" id="Curve2D_8bs5i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 120)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o1v7"]
+size = Vector2(80, 80)
+
+[node name="Button Test Scene" type="Node2D" unique_id=185058661]
+
+[node name="Button" parent="." unique_id=754992898 instance=ExtResource("1_7o1v7")]
+position = Vector2(480, 288)
+
+[node name="CollisionShape2D" parent="Button" index="1" unique_id=1646342542]
+position = Vector2(0, 4)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=671807504]
+position = Vector2(480, 160)
+curve = SubResource("Curve2D_8bs5i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1820045866]
+rotation = 1.5707964
+script = ExtResource("1_6x3ry")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Path2D/PathFollow2D" unique_id=1440910565]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/RigidBody2D" unique_id=1926359826]
+position = Vector2(0, 1.3828278e-05)
+shape = SubResource("RectangleShape2D_7o1v7")
+
+[node name="platformPolygon" parent="." unique_id=2054198748 instance=ExtResource("2_6x3ry")]
+scale = Vector2(0.5, 0.5)
+
+[node name="Polygon2D" parent="platformPolygon" index="0" unique_id=51497381]
+position = Vector2(-606.22217, 304)
+scale = Vector2(3.4722219, 1.5625)
+polygon = PackedVector2Array(256, 384, 256, 256, 414.208, 256, 414.208, 409.59998, 487.93604, 409.59998, 487.93604, 256, 640, 256, 640, 384, 640, 512, 256, 512)
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="." unique_id=42092177]
+position = Vector2(480, 432)
+node_a = NodePath("../Button")
+node_b = NodePath("../platformPolygon")
+disable_collision = false
+
+[editable path="Button"]
+[editable path="platformPolygon"]

@@ -1,8 +1,12 @@
-extends Node2D
+extends CollisionPolygon2D
+
+@onready var polygon_2d: Polygon2D = $"../Polygon2D"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	polygon = polygon_2d.polygon
+	position = polygon_2d.position + polygon_2d.offset
+	scale = polygon_2d.scale
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
