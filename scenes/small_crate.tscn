@@ -10,9 +10,11 @@ collision_layer = 32
 collision_mask = 564
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=469688312]
+position = Vector2(0, -50)
 texture = ExtResource("1_dwt0d")
 region_enabled = true
 region_rect = Rect2(15, 15, 100, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1178545300]
+position = Vector2(0, -50)
 shape = SubResource("RectangleShape2D_b66cd")
