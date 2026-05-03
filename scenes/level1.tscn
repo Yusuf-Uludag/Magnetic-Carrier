@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://wgjp0xqbysyo" path="res://scripts/level_1.gd" id="1_g2h75"]
 [ext_resource type="Script" uid="uid://c31xdi68ae5ew" path="res://scripts/loading_zone.gd" id="2_m7ahb"]
 [ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/small_crate.tscn" id="2_wwpf4"]
+[ext_resource type="PackedScene" uid="uid://nsf8nrh07rqa" path="res://scenes/platform_polygon.tscn" id="4_6sh32"]
+[ext_resource type="PackedScene" uid="uid://d23jb6ailsap2" path="res://scenes/elevator.tscn" id="5_ejswk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
 size = Vector2(110, 110)
@@ -19,13 +21,58 @@ size = Vector2(110, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbk5w"]
 size = Vector2(110, 5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7ahb"]
-size = Vector2(300, 20)
+[sub_resource type="Animation" id="Animation_0wfyh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(558, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(266, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_sugp2"]
+resource_name = "elevate"
+length = 5.0
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(558, -0.0005, 0, 0.0005, 0, 251, -0.8333334, 51.16667, 0, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ru4tf"]
+_data = {
+&"RESET": SubResource("Animation_0wfyh"),
+&"elevate": SubResource("Animation_sugp2")
+}
 
 [node name="Level1" type="Node2D" unique_id=829880009]
 script = ExtResource("1_g2h75")
 
 [node name="LoadingZones" type="Node2D" parent="." unique_id=1955585293]
+position = Vector2(162, 63)
 
 [node name="Zone" type="Node2D" parent="LoadingZones" unique_id=1288274292]
 position = Vector2(734, 443)
@@ -90,22 +137,37 @@ position = Vector2(0, 57.5)
 shape = SubResource("RectangleShape2D_bbk5w")
 
 [node name="SmallCrate" parent="." unique_id=1840297805 instance=ExtResource("2_wwpf4")]
-position = Vector2(734, 315)
-gravity_scale = 0.072
+position = Vector2(199, 499)
 
 [node name="SmallCrate2" parent="." unique_id=1873174029 instance=ExtResource("2_wwpf4")]
-position = Vector2(858, -106)
-gravity_scale = 0.072
+position = Vector2(331, 499)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1924052502]
-position = Vector2(802, 505)
+[node name="Platform" type="Node2D" parent="." unique_id=312181552]
+
+[node name="platformPolygon" parent="Platform" unique_id=2054198748 instance=ExtResource("4_6sh32")]
 collision_layer = 512
-collision_mask = 0
+collision_mask = 564
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=182315073]
-shape = SubResource("RectangleShape2D_m7ahb")
+[node name="Polygon2D" parent="Platform/platformPolygon" index="0" unique_id=51497381]
+texture_scale = Vector2(5, 5)
+polygon = PackedVector2Array(64, 64, 64, 576, 1086, 573, 1089, 705, -64, 704, -64, -64, 1216, -64, 1216, 704, 1088, 704, 1088, 64)
+
+[node name="CollisionPolygon2D" parent="Platform/platformPolygon" index="1" unique_id=516406077]
+position = Vector2(nan, nan)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Elevator" parent="Platform" unique_id=734371316 instance=ExtResource("5_ejswk")]
+position = Vector2(266, 558)
+collision_layer = 512
+collision_mask = 564
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform/Elevator" unique_id=681255101]
+libraries/ = SubResource("AnimationLibrary_ru4tf")
+autoplay = &"elevate"
 
 [connection signal="body_entered" from="LoadingZones/Zone/BorderArea" to="LoadingZones/Zone" method="_on_border_area_body_entered"]
 [connection signal="body_exited" from="LoadingZones/Zone/BorderArea" to="LoadingZones/Zone" method="_on_border_area_body_exited"]
 [connection signal="body_entered" from="LoadingZones/Zone2/BorderArea" to="LoadingZones/Zone2" method="_on_border_area_body_entered"]
 [connection signal="body_exited" from="LoadingZones/Zone2/BorderArea" to="LoadingZones/Zone2" method="_on_border_area_body_exited"]
+
+[editable path="Platform/platformPolygon"]
