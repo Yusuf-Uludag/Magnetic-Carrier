@@ -6,9 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyad2"]
 radius = 80.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dnvs"]
-size = Vector2(280, 200)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ekt8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -73,11 +70,6 @@ node_b = NodePath("../..")
 position = Vector2(100, 0)
 node_a = NodePath("../RightWheel")
 node_b = NodePath("../..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1296468498]
-position = Vector2(0, -50)
-shape = SubResource("RectangleShape2D_4dnvs")
-disabled = true
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=383588701]
 position = Vector2(-100, 70)
