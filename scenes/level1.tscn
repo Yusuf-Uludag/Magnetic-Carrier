@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ibsfyc6ylphi" path="res://scenes/small_crate.tscn" id="2_wwpf4"]
 [ext_resource type="PackedScene" uid="uid://nsf8nrh07rqa" path="res://scenes/platform_polygon.tscn" id="4_6sh32"]
 [ext_resource type="PackedScene" uid="uid://d23jb6ailsap2" path="res://scenes/elevator.tscn" id="5_ejswk"]
+[ext_resource type="PackedScene" uid="uid://d0aepl1vu745q" path="res://scenes/player.tscn" id="6_6sh32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
 size = Vector2(110, 110)
@@ -71,8 +72,11 @@ _data = {
 [node name="Level1" type="Node2D" unique_id=829880009]
 script = ExtResource("1_g2h75")
 
+[node name="Player" parent="." unique_id=1568808073 instance=ExtResource("6_6sh32")]
+position = Vector2(567, 487)
+
 [node name="LoadingZones" type="Node2D" parent="." unique_id=1955585293]
-position = Vector2(162, 63)
+position = Vector2(171, 72)
 
 [node name="Zone" type="Node2D" parent="LoadingZones" unique_id=1288274292]
 position = Vector2(734, 443)
@@ -138,11 +142,9 @@ shape = SubResource("RectangleShape2D_bbk5w")
 
 [node name="SmallCrate" parent="." unique_id=1840297805 instance=ExtResource("2_wwpf4")]
 position = Vector2(199, 499)
-collision_mask = 564
 
 [node name="SmallCrate2" parent="." unique_id=1873174029 instance=ExtResource("2_wwpf4")]
 position = Vector2(331, 499)
-collision_mask = 564
 
 [node name="Platform" type="Node2D" parent="." unique_id=312181552]
 
