@@ -76,7 +76,7 @@ script = ExtResource("1_g2h75")
 position = Vector2(567, 487)
 
 [node name="LoadingZones" type="Node2D" parent="." unique_id=1955585293]
-position = Vector2(171, 72)
+position = Vector2(179, 80)
 
 [node name="Zone" type="Node2D" parent="LoadingZones" unique_id=1288274292]
 position = Vector2(734, 443)
