@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://d4g5qw6volpy3"]
+
+[ext_resource type="PackedScene" uid="uid://nsf8nrh07rqa" path="res://scenes/platform_polygon.tscn" id="1_6jvd8"]
+[ext_resource type="PackedScene" uid="uid://d23jb6ailsap2" path="res://scenes/elevator.tscn" id="2_fsjfv"]
+[ext_resource type="PackedScene" uid="uid://b24yl6k7yb6hn" path="res://scenes/hatch.tscn" id="3_urr3w"]
+
+[sub_resource type="Animation" id="Animation_0wfyh"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(499, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(274, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_sugp2"]
+resource_name = "elevate"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3),
+"points": PackedFloat32Array(474, -1.5, 0, 1.5, 0, 152, -1.5, 0, 1.5, 0),
+"times": PackedFloat32Array(0, 5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwa2s"]
+_data = {
+&"RESET": SubResource("Animation_0wfyh"),
+&"elevate": SubResource("Animation_sugp2")
+}
+
+[node name="PlatformTest" type="Node2D" unique_id=1308234197]
+
+[node name="Platform" type="Node2D" parent="." unique_id=1016122422]
+
+[node name="platformPolygon" parent="Platform" unique_id=2054198748 instance=ExtResource("1_6jvd8")]
+
+[node name="Polygon2D" parent="Platform/platformPolygon" index="0" unique_id=51497381]
+texture_scale = Vector2(5, 5)
+polygon = PackedVector2Array(64, 64, 64, 576, 896, 576, 896, 704, -64, 704, -64, -64, 1216, -64, 1216, 704, 1088, 704, 1088, 64)
+
+[node name="CollisionPolygon2D" parent="Platform/platformPolygon" index="1" unique_id=516406077]
+position = Vector2(nan, nan)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)
+
+[node name="Elevator" parent="Platform" unique_id=734371316 instance=ExtResource("2_fsjfv")]
+position = Vector2(274, 499)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform/Elevator" unique_id=2051039887]
+libraries/ = SubResource("AnimationLibrary_uwa2s")
+autoplay = &"elevate"
+
+[node name="Hatch" parent="Platform" unique_id=1429685456 instance=ExtResource("3_urr3w")]
+position = Vector2(882, 109)
+
+[editable path="Platform/platformPolygon"]
